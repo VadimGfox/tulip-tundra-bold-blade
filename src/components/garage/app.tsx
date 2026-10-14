@@ -7,7 +7,7 @@ import { GarageOverlays, GarageToasts } from "@/components/garage/overlays";
 import { AmbientDust } from "@/components/garage/particles";
 import { SplashScreen } from "@/components/garage/splash";
 import { useGarage } from "@/lib/garage/store";
-import { filterCars, money, playClick } from "@/lib/garage/utils";
+import { filterCars, money, playClick, installUiSounds } from "@/lib/garage/utils";
 
 function StackGlyph() {
   return (
@@ -63,6 +63,7 @@ function GarageShell() {
   const visible = filterCars(cars, search);
 
   useEffect(() => {
+    installUiSounds();
     const finish = () => bootCheck();
     const unsub = useGarage.persist.onFinishHydration(finish);
     if (useGarage.persist.hasHydrated()) finish();

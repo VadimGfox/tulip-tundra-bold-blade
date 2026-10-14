@@ -34,6 +34,7 @@ import {
   refreshCarPeriod,
   sellOutcome,
   tariffQuote,
+  playToast,
 } from "./utils";
 
 const WIZARD_ORDER: WizardStepId[] = [
@@ -430,13 +431,13 @@ export const useGarage = create<GarageState>()(
           wizardStep: "acquire",
           subModal: "none",
         });
-        get().pushToast(`Автомобиль «${name}» добавлен`, "info");
+        get().pushToast(`Автомобиль «${name}» добавлен`, "ok");
         return true;
       },
       openReset: () => set({ overlay: "reset", subModal: "none" }),
       confirmReset: () => {
         set({ cars: [], overlay: "none" });
-        get().pushToast("База данных полностью очищена", "info");
+        get().pushToast("База данных полностью очищена", "ok");
       },
       openRent: (id) =>
         set({
@@ -521,7 +522,7 @@ export const useGarage = create<GarageState>()(
           rentKind: null,
           rentStep: "pick",
         });
-        if (current) get().pushToast(`«${current.name}» сдан в аренду`, "info");
+        if (current) get().pushToast(`«${current.name}» сдан в аренду`, "ok");
         return true;
       },
       rentBack: () => {
@@ -540,7 +541,7 @@ export const useGarage = create<GarageState>()(
           deleteId: null,
           detailsId: null,
         });
-        if (current) get().pushToast(`«${current.name}» удалён`, "info");
+        if (current) get().pushToast(`«${current.name}» удалён`, "ok");
       },
       openDetails: (id) => {
         set({
@@ -561,7 +562,7 @@ export const useGarage = create<GarageState>()(
       },
       refreshCar: (id) => {
         set({ cars: get().cars.map((car) => (car.id === id ? refreshCarPeriod(car) : car)) });
-        get().pushToast("Информация обновлена", "info");
+        get().pushToast("Информация обновлена", "ok");
       },
       openOfficial: () => {
         const s = get();
@@ -585,7 +586,7 @@ export const useGarage = create<GarageState>()(
           cars: patchCar(s.cars, id, (car) => ({ ...car, officialPrice: value })),
           subModal: "none",
         });
-        get().pushToast("Госстоимость сохранена", "info");
+        get().pushToast("Госстоимость сохранена", "ok");
         return true;
       },
       openExpense: () =>
@@ -623,7 +624,7 @@ export const useGarage = create<GarageState>()(
             : repair
               ? "Ремонт добавлен"
               : "Расход добавлен",
-          "info",
+          "ok",
         );
         return true;
       },
@@ -666,7 +667,7 @@ export const useGarage = create<GarageState>()(
           })),
           subModal: "none",
         });
-        get().pushToast("Заработок обновлён", "info");
+        get().pushToast("Заработок обновлён", "ok");
         return true;
       },
       openClearLog: () => set({ subModal: "clear-log" }),
@@ -680,14 +681,14 @@ export const useGarage = create<GarageState>()(
           ),
           subModal: "none",
         });
-        get().pushToast(range === "month" ? "Месячный лог очищен" : "Недельный лог очищен", "info");
+        get().pushToast(range === "month" ? "Месячный лог очищен" : "Недельный лог очищен", "ok");
       },
       setLogRange: (logRange) => set({ logRange }),
       setCarImage: (id, imageData) => {
         set({
           cars: patchCar(get().cars, id, (car) => ({ ...car, imageData })),
         });
-        get().pushToast("Изображение сохранено", "info");
+        get().pushToast("Изображение сохранено", "ok");
       },
       openRename: () => {
         const s = get();
@@ -708,7 +709,7 @@ export const useGarage = create<GarageState>()(
           cars: patchCar(s.cars, id, (car) => ({ ...car, name })),
           subModal: "none",
         });
-        get().pushToast("Название обновлено", "info");
+        get().pushToast("Название обновлено", "ok");
         return true;
       },
       openModel: () => {
@@ -730,7 +731,7 @@ export const useGarage = create<GarageState>()(
           cars: patchCar(s.cars, id, (car) => ({ ...car, model })),
           subModal: "none",
         });
-        get().pushToast(model ? "Модель сохранена" : "Модель очищена", "info");
+        get().pushToast(model ? "Модель сохранена" : "Модель очищена", "ok");
         return true;
       },
       openOwnedDays: () => {
@@ -756,7 +757,7 @@ export const useGarage = create<GarageState>()(
           })),
           subModal: "none",
         });
-        get().pushToast("Срок владения обновлён", "info");
+        get().pushToast("Срок владения обновлён", "ok");
         return true;
       },
       openPlate: () => {
@@ -784,7 +785,7 @@ export const useGarage = create<GarageState>()(
           })),
           subModal: "none",
         });
-        get().pushToast("Госномер обновлён", "info");
+        get().pushToast("Госномер обновлён", "ok");
         return true;
       },
       openTariff: () => set({ subModal: "tariff" }),
@@ -834,7 +835,7 @@ export const useGarage = create<GarageState>()(
           })),
           subModal: "tariff",
         });
-        get().pushToast("Тариф сохранён", "info");
+        get().pushToast("Тариф сохранён", "ok");
         return true;
       },
       openSell: () => set({ subModal: "sell-ask", draftSale: "" }),
@@ -875,7 +876,7 @@ export const useGarage = create<GarageState>()(
           detailsId: null,
           deleteId: null,
         });
-        if (current) get().pushToast(`«${current.name}» продан и убран из базы`, "info");
+        if (current) get().pushToast(`«${current.name}» продан и убран из базы`, "ok");
       },
       openApi: () => set({ overlay: "api", subModal: "none" }),
       setApiKey: (apiKey) => set({ apiKey }),
@@ -897,7 +898,7 @@ export const useGarage = create<GarageState>()(
           cars: get().cars.map((row) => (row.id === id ? car : row)),
           subModal: "none",
         });
-        get().pushToast("Последняя аренда отменена", "info");
+        get().pushToast("Последняя аренда отменена", "ok");
       },
       requestImport: (cars) => {
         if (!cars.length) {
@@ -906,7 +907,7 @@ export const useGarage = create<GarageState>()(
         }
         if (get().cars.length === 0) {
           set({ cars, overlay: "none", pendingImport: null });
-          get().pushToast(`Загружено автомобилей: ${cars.length}`, "info");
+          get().pushToast(`Загружено автомобилей: ${cars.length}`, "ok");
           return;
         }
         set({ overlay: "import-confirm", subModal: "none", pendingImport: cars });
@@ -920,13 +921,14 @@ export const useGarage = create<GarageState>()(
           detailsId: null,
           deleteId: null,
         });
-        get().pushToast(`Загружено автомобилей: ${cars.length}`, "info");
+        get().pushToast(`Загружено автомобилей: ${cars.length}`, "ok");
       },
       cancelImport: () => set({ overlay: "none", pendingImport: null }),
       pushToast: (text, kind = "info") => {
         const id = newId();
         set({ toasts: [...get().toasts.slice(-2), { id, text, kind }] });
         if (typeof window !== "undefined") {
+          playToast();
           window.setTimeout(() => get().dismissToast(id), TOAST_MS);
         }
       },

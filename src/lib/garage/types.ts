@@ -35,7 +35,7 @@ export type SubModal =
   | "model"
   | "sell-ask"
   | "sell-result";
-export type ToastKind = "info" | "error";
+export type ToastKind = "info" | "ok" | "error";
 export type RentStep = "pick" | "duration" | "amount";
 export type LogRange = "week" | "month";
 export type ExpenseSign = 1 | -1;

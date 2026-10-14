@@ -254,7 +254,7 @@ export function DetailsOverlay({ car }: { car: Car }) {
               }
             }}
           />
-          <div className="car-photo mb-3 h-36 bg-surface">
+          <div className="car-photo mt-6 mb-3 h-[164px] bg-surface">
             {car.imageData ? (
               <img src={car.imageData} alt="" className="car-photo-img" />
             ) : (

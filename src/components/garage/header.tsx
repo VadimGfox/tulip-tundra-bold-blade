@@ -24,7 +24,7 @@ export function GarageHeader() {
       return;
     }
     exportGarageLog(cars);
-    pushToast("Лог выгружен");
+    pushToast("Лог выгружен", "ok");
   };
 
   const pickImport = () => {

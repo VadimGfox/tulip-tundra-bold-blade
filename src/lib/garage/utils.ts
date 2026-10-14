@@ -213,29 +213,80 @@ export function readCarImage(file: File) {
   });
 }
 
-let clickCtx: AudioContext | null = null;
+const SOUND = {
+  hover: "/sounds/a1.mp3",
+  click: "/sounds/a2.mp3",
+  toast: "/sounds/a3.mp3",
+  confirm: "/sounds/a4.mp3",
+  cancel: "/sounds/a5.mp3",
+} as const;
 
-export function playClick() {
+const CONFIRM_LABELS = new Set([
+  "Подтвердить",
+  "Сохранить",
+  "Создать",
+  "Удалить",
+  "Очистить",
+  "Отменить",
+  "Загрузить",
+  "Принять",
+  "Да, сбросить",
+]);
+
+let soundsReady = false;
+let queued: keyof typeof SOUND = "click";
+
+function playFile(src: string) {
   try {
-    const Ctor =
-      window.AudioContext ||
-      (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-    if (!Ctor) return;
-    clickCtx ??= new Ctor();
-    if (clickCtx.state === "suspended") void clickCtx.resume();
-    const osc = clickCtx.createOscillator();
-    const gain = clickCtx.createGain();
-    osc.type = "square";
-    osc.frequency.value = 920;
-    gain.gain.setValueAtTime(0.045, clickCtx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, clickCtx.currentTime + 0.045);
-    osc.connect(gain);
-    gain.connect(clickCtx.destination);
-    osc.start();
-    osc.stop(clickCtx.currentTime + 0.05);
+    const node = new Audio(src);
+    node.volume = 0.62;
+    void node.play();
   } catch {
     /* ignore */
   }
+}
+
+function buttonLabel(el: HTMLElement) {
+  return (el.innerText || el.getAttribute("aria-label") || "").replace(/\s+/g, " ").trim();
+}
+
+export function installUiSounds() {
+  if (soundsReady || typeof document === "undefined") return;
+  soundsReady = true;
+  for (const src of Object.values(SOUND)) {
+    const warm = new Audio(src);
+    warm.preload = "auto";
+  }
+  document.addEventListener("mouseover", (event) => {
+    const el = event.target instanceof Element ? event.target.closest("button, [role='button']") : null;
+    if (!(el instanceof HTMLElement)) return;
+    if (el.matches(":disabled") || el.getAttribute("aria-disabled") === "true") return;
+    if (event.relatedTarget instanceof Node && el.contains(event.relatedTarget)) return;
+    playFile(SOUND.hover);
+  });
+  document.addEventListener(
+    "pointerdown",
+    (event) => {
+      const el = event.target instanceof Element ? event.target.closest("button, [role='button']") : null;
+      if (!(el instanceof HTMLElement)) {
+        queued = "click";
+        return;
+      }
+      const label = buttonLabel(el);
+      queued = label === "Отмена" ? "cancel" : CONFIRM_LABELS.has(label) ? "confirm" : "click";
+    },
+    true,
+  );
+}
+
+export function playClick() {
+  const kind = queued;
+  queued = "click";
+  playFile(SOUND[kind]);
+}
+
+export function playToast() {
+  playFile(SOUND.toast);
 }
 
 function asLogs(value: unknown): RentLog[] {

@@ -183,7 +183,7 @@ export function WizardModal() {
                 const data = await readCarImage(file);
                 setDraftImage(data);
                 void albumPut(draftName, data);
-                pushToast("Изображение сохранено в альбом", "info");
+                pushToast("Изображение сохранено в альбом", "ok");
               } catch {
                 pushToast("Не удалось прочитать файл", "error");
               }

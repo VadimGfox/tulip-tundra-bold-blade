@@ -1026,12 +1026,12 @@ export function GarageToasts() {
   const toasts = useGarage((s) => s.toasts);
   if (toasts.length === 0) return null;
   return (
-    <div className="pointer-events-none fixed right-4 bottom-28 z-[100] flex w-max max-w-xs flex-col-reverse gap-2">
+    <div className="pointer-events-none fixed right-[1.15rem] bottom-3 z-[100] flex w-max max-w-xs flex-col-reverse gap-2">
       {toasts.map((toast) => (
         <div
           key={toast.id}
-          className={`pointer-events-auto px-6 py-4 text-center text-sm text-fg ${
-            toast.kind === "error" ? "bg-toast-err" : "bg-toast"
+          className={`toast pointer-events-auto px-6 py-4 text-center text-sm text-fg ${
+            toast.kind === "error" ? "is-error" : toast.kind === "ok" ? "is-ok" : "is-info"
           }`}
         >
           {toast.text}
