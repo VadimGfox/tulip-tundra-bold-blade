@@ -15,7 +15,6 @@ function Modal({
   wide,
   roomy,
   layer,
-  blur,
 }: {
   title: string;
   titleClass?: string;
@@ -28,9 +27,9 @@ function Modal({
   const width = roomy ? "max-w-xl" : wide ? "max-w-md" : "max-w-sm";
   return (
     <div
-      className={`backdrop-enter fixed inset-0 flex items-center justify-center p-4 ${
-        layer === "sub" ? "z-50" : "z-40"
-      } ${blur ? "backdrop-blurred" : "backdrop-plain"}`}
+      className={`backdrop-enter backdrop-blurred fixed inset-0 flex items-center justify-center p-4 ${
+        layer === "sub" ? "z-[92]" : "z-[80]"
+      }`}
     >
       <div className={`modal-enter modal-shell w-full overflow-hidden ${width}`} role="dialog" aria-modal="true">
         <header className="modal-cap">
@@ -1027,7 +1026,7 @@ export function GarageToasts() {
   const toasts = useGarage((s) => s.toasts);
   if (toasts.length === 0) return null;
   return (
-    <div className="pointer-events-none fixed right-4 bottom-28 z-50 flex w-max max-w-xs flex-col-reverse gap-2">
+    <div className="pointer-events-none fixed right-4 bottom-28 z-[100] flex w-max max-w-xs flex-col-reverse gap-2">
       {toasts.map((toast) => (
         <div
           key={toast.id}

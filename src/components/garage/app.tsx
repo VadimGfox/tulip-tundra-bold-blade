@@ -73,7 +73,7 @@ function GarageShell() {
     <div className="relative flex min-h-dvh flex-col">
       <AmbientDust />
       <GarageHeader />
-      <main className="relative z-10 flex min-h-0 flex-1 flex-col px-3 pt-4 pb-36 md:px-5 md:pt-4">
+      <main className="garage-stage relative z-10 flex min-h-0 flex-1 flex-col px-3 pt-4 pb-36 md:px-5 md:pt-4">
         {visible.length === 0 ? (
           <div className="flex flex-1 flex-col items-center justify-center px-6">
             <Car className="mb-4 size-10 text-subtle" strokeWidth={1.5} />

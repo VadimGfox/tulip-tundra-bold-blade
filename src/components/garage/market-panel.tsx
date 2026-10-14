@@ -65,7 +65,7 @@ export function MarketPanel() {
   };
 
   return (
-    <div className="backdrop-enter backdrop-blurred fixed inset-0 z-40 overflow-hidden">
+    <div className="backdrop-enter backdrop-blurred fixed inset-0 z-[80] overflow-hidden">
       <div className="modal-enter mx-auto flex h-full w-full max-w-3xl flex-col">
         <header className="modal-cap shrink-0">
           <div className="modal-cap-row">

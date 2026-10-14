@@ -102,20 +102,21 @@
   .payback-track { position: relative; height: 3px; background: #2a2a32; overflow: hidden; }
   .payback-fill { position: relative; height: 100%; }
   .payback-fill::after { content: ""; position: absolute; top: -3px; bottom: -3px; width: 36px; background: linear-gradient(90deg, transparent, #fff, transparent); animation: payback-beam 2.2s ease-in-out infinite; }
-  .details-board { display: grid; grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1.08fr) 1px minmax(0, 0.95fr); min-height: 0; height: 100%; background: #141418; box-shadow: inset 0 0 0 1px #ffffff12; }
+  .details-board { display: grid; grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1.08fr) 1px minmax(0, 0.95fr); min-height: 0; height: 100%; background: radial-gradient(120% 72% at 50% -16%, #2a2438 0%, #141418 46%); box-shadow: inset 0 0 0 1px #ffffff12; }
   .details-col { display: flex; min-width: 0; min-height: 0; flex-direction: column; overflow: auto; padding: 12px 16px 16px; }
   .pulse-rule { width: 1px; background: linear-gradient(180deg, transparent, #ffffff66, transparent); animation: line-pulse 2.8s ease-in-out infinite; }
   .sign-btn { width: 30px; height: 22px; border: 0; background: #32323c; color: #f2f2f6; font-size: 1.05rem; line-height: 1; font-weight: 700; padding: 0; }
   .sign-btn:hover { background: #484856; color: #fff; }
   .car-tilt { position: relative; transform-style: preserve-3d; will-change: transform; }
   .card-sheen { position: absolute; inset: 0; z-index: 6; overflow: hidden; pointer-events: none; }
-  .card-sheen::before { content: ""; position: absolute; top: -40%; bottom: -40%; left: 0; width: 28%; background: linear-gradient(112deg, transparent 0%, rgba(255,255,255,0.02) 28%, rgba(255,255,255,0.78) 50%, rgba(255,255,255,0.06) 70%, transparent 100%); transform: translateX(-220%) skewX(-18deg); animation: card-sheen 0.52s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+  .card-sheen::before { content: ""; position: absolute; top: -40%; bottom: -40%; left: 0; width: 18%; background: linear-gradient(112deg, transparent 0%, rgba(255,255,255,0.015) 30%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.02) 70%, transparent 100%); transform: translateX(-220%) skewX(-18deg); animation: card-sheen 0.62s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
   .car-photo { position: relative; overflow: hidden; background: #141418; }
   .car-photo-img { position: relative; z-index: 0; display: block; height: 100%; width: 100%; object-fit: contain; }
-  .car-rgb { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; height: 34%; pointer-events: none; background: linear-gradient(to top, rgba(255, 48, 96, 0.95) 0%, rgba(86, 255, 214, 0.55) 36%, rgba(70, 120, 255, 0.22) 68%, transparent 100%); mix-blend-mode: screen; animation: rgb-flow 9s linear infinite; }
+  .car-rgb { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; height: 12px; pointer-events: none; background: linear-gradient(to top, rgba(255, 42, 42, 0.9) 0%, rgba(255, 42, 42, 0.28) 58%, transparent 100%); mix-blend-mode: screen; animation: rgb-flow 8s linear infinite; }
   .quality-pip { display: block; width: 38px; height: 6px; border-radius: 999px; flex: none; }
   .quality-pip.on-photo { position: absolute; z-index: 4; left: 10px; top: 10px; }
-  .modal-shell { background: #1c1c24; }
+  .modal-shell { position: relative; background: #1c1c24; }
+  .modal-shell > :not(header) { background: radial-gradient(120% 90% at 50% -14%, #2a2438 0%, rgba(28, 28, 36, 0) 62%); }
   .modal-cap { background: linear-gradient(180deg, #3a3a44 0%, #121216 42%, #050506 100%); }
   .modal-cap-row { position: relative; display: flex; align-items: center; justify-content: center; min-height: 54px; padding: 0.75rem 2.6rem 0.65rem; }
   .modal-cap-title { margin: 0; text-align: center; font-weight: 800; letter-spacing: 0.08em; font-size: 1.02rem; line-height: 1.2; color: #f2f2f6; }
@@ -132,6 +133,7 @@
   .fleet-stat svg { width: 16px; height: 16px; }
   .fleet-k { font-size: 0.68rem; letter-spacing: 0.12em; font-weight: 600; text-transform: uppercase; line-height: 1.15; }
   .fleet-v { font-size: 0.78rem; letter-spacing: 0.02em; font-weight: 600; color: #c8c8d2; font-variant-numeric: tabular-nums; }
+  .garage-stage { background: radial-gradient(110% 52% at 50% -8%, rgba(74, 50, 118, 0.5) 0%, rgba(42, 36, 56, 0.16) 40%, transparent 68%); }
   .market-stage { background: radial-gradient(120% 80% at 50% -10%, #2a2438 0%, #141418 42%, #101014 100%); box-shadow: inset 0 0 0 1px #ffffff10; }
   .market-hero { background: linear-gradient(180deg, #221c18 0%, #16141a 100%); box-shadow: inset 0 0 0 1px #e4bc4a55, 0 0 28px #e4bc4a18; }
   .market-tile { background: linear-gradient(180deg, #22222c 0%, #18181f 100%); box-shadow: inset 3px 0 0 var(--accent, #3cb85c), inset 0 0 0 1px #ffffff10; }

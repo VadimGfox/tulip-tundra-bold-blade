@@ -25,7 +25,7 @@ export type MarketResult =
 const WINDOW_MS = 60_000;
 const MAX_CALLS = 5;
 const recent: number[] = [];
-const HOSTS = ["https://api.majestic-files.com", "https://api.majestic-files.net"];
+const HOSTS = ["https://api.majestic-files.net", "https://api.majestic-files.com"];
 
 const SERVER_SLUGS: Record<ApiServerId, string[]> = {
   RU1: ["ro1", "ru1", "RU1"],

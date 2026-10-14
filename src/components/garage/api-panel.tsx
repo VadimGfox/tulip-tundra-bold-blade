@@ -14,7 +14,7 @@ export function ApiPanel() {
   const saved = apiServer ? API_SERVERS[apiServer] : "";
 
   return (
-    <div className="backdrop-enter backdrop-blurred fixed inset-0 z-40 flex items-center justify-center p-4">
+    <div className="backdrop-enter backdrop-blurred fixed inset-0 z-[80] flex items-center justify-center p-4">
       <div className="modal-enter modal-shell relative w-full max-w-md overflow-hidden" role="dialog" aria-modal="true">
         <header className="modal-cap">
           <div className="modal-cap-row">

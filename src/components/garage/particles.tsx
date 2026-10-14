@@ -81,8 +81,8 @@ export function AmbientDust() {
         if (mote.y < top) continue;
         const fade = 0.65 + 0.35 * Math.sin((mote.life / mote.max) * Math.PI);
         const depth = 0.45 + mote.z * 0.55;
-        const alpha = 0.46 * fade * depth;
-        const size = 0.6 + mote.z * 0.9;
+        const alpha = 0.32 * fade * depth;
+        const size = 0.35 + mote.z * 0.48;
         ctx.beginPath();
         ctx.fillStyle = `rgba(226,226,234,${alpha})`;
         ctx.arc(mote.x, mote.y, size, 0, Math.PI * 2);
@@ -100,5 +100,5 @@ export function AmbientDust() {
     };
   }, []);
 
-  return <canvas ref={ref} className="pointer-events-none fixed inset-0 z-[60]" aria-hidden="true" />;
+  return <canvas ref={ref} className="pointer-events-none fixed inset-0 z-[15]" aria-hidden="true" />;
 }
